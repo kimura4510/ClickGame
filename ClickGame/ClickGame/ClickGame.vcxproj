@@ -146,12 +146,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\Engine\Graphic\GraphicManager.h" />
+    <ClInclude Include="src\Engine\Input\InputManager.h" />
     <ClInclude Include="src\Engine\Window\Window.h" />
     <ClInclude Include="src\Utility\Singleton.h" />
     <ClInclude Include="src\Utility\Size.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Engine\Graphic\GraphicManager.cpp" />
+    <ClCompile Include="src\Engine\Input\InputManager.cpp" />
     <ClCompile Include="src\Engine\Window\Window.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
