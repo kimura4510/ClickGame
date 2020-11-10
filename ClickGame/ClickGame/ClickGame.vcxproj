@@ -148,6 +148,7 @@
     <ClInclude Include="src\Engine\Graphic\GraphicManager.h" />
     <ClInclude Include="src\Engine\Window\Window.h" />
     <ClInclude Include="src\Utility\Singleton.h" />
+    <ClInclude Include="src\Utility\Size.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Engine\Graphic\GraphicManager.cpp" />
