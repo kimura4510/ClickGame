@@ -139,7 +139,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Engine\Graphic\Graphic.h" />
     <ClInclude Include="src\Engine\Window\Window.h" />
+    <ClInclude Include="src\Utility\Singleton.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Engine\Window\Window.cpp" />
