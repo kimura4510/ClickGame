@@ -102,7 +102,6 @@ void GraphicManager::DrawTexture(float x, float y, Texture* texture_data)
 
 bool GraphicManager::CreateTexture(const char* file_name, Texture* texture_data)
 {
-	Size size;
 	D3DXIMAGE_INFO info;
 
 	D3DXGetImageInfoFromFileA(file_name, &info);
