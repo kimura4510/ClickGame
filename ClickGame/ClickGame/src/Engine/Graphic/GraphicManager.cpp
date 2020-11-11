@@ -32,21 +32,21 @@ bool GraphicManager::InitGraphics(HWND hwindow)
 		return false;
 	}
 
-	D3DVIEWPORT9 ViewPort;
+	D3DVIEWPORT9 view_port;
 
-	ViewPort.X = 0;
-	ViewPort.Y = 0;
-	ViewPort.Width = pres_param.BackBufferWidth;
-	ViewPort.Height = pres_param.BackBufferHeight;
-	ViewPort.MinZ = 0.0f;
-	ViewPort.MaxZ = 1.0f;
+	view_port.X = 0;
+	view_port.Y = 0;
+	view_port.Width = pres_param.BackBufferWidth;
+	view_port.Height = pres_param.BackBufferHeight;
+	view_port.MinZ = 0.0f;
+	view_port.MaxZ = 1.0f;
 
-	if (FAILED(Device->SetViewport(&ViewPort)))
+	if (FAILED(Device->SetViewport(&view_port)))
 	{
 		return false;
 	}
 
-	D3DXCreateFont(Device, 20, 10, 0, 0, 0, 0, 0, 0, 0, "Times New Roman", FontDevice);
+	D3DXCreateFont(Device, 20, 10, 0, 0, 0, 0, 0, 0, 0, "Times New Roman", &FontDevice);
 
 	return true;
 }
@@ -60,7 +60,7 @@ void GraphicManager::ReleaseGraphics()
 
 bool GraphicManager::DrawStart()
 {
-	Device->Clear(0, NULL, D3DCLEAR_TARGET, D3DCOLOR_XRGB(0, 255, 0), 0.0f, 0);
+	Device->Clear(0, nullptr, D3DCLEAR_TARGET, D3DCOLOR_XRGB(0, 255, 0), 0.0f, 0);
 
 	Device->SetTextureStageState(0, D3DTSS_ALPHAOP, D3DTOP_MODULATE);
 	Device->SetTextureStageState(0, D3DTSS_COLORARG1, D3DTA_TEXTURE);
@@ -81,7 +81,7 @@ bool GraphicManager::DrawStart()
 void GraphicManager::DrawEnd()
 {
 	Device->EndScene();
-	Device->Present(NULL, NULL, NULL, NULL);
+	Device->Present(nullptr, nullptr, nullptr, nullptr);
 }
 
 void GraphicManager::DrawTexture(float x, float y, Texture* texture_data)
@@ -89,14 +89,14 @@ void GraphicManager::DrawTexture(float x, float y, Texture* texture_data)
 	CustomVertex TriStr[] =
 	{
 		{x, y, 0.0f, 1.0f, D3DCOLOR_RGBA(255, 255, 255, 255), 0.0f, 0.0f}, //left-top
-		{x + texture_data->m_Width, y, 0.0f, 1.0f, D3DCOLOR_RGBA(255, 255, 255, 255), 1.0f, 0.0f}, //right-top
-		{x, y + texture_data->m_Height, 0.0f, 1.0f, D3DCOLOR_RGBA(255, 255, 255, 255), 0.0f, 1.0f},//left-bottom
-		{x + texture_data->m_Width, y + texture_data->m_Height, 0.0f, 1.0f, D3DCOLOR_RGBA(255, 255, 255, 255), 1.0f, 1.0f},//right-bottom
+		{x + texture_data->width, y, 0.0f, 1.0f, D3DCOLOR_RGBA(255, 255, 255, 255), 1.0f, 0.0f}, //right-top
+		{x, y + texture_data->height, 0.0f, 1.0f, D3DCOLOR_RGBA(255, 255, 255, 255), 0.0f, 1.0f},//left-bottom
+		{x + texture_data->width, y + texture_data->height, 0.0f, 1.0f, D3DCOLOR_RGBA(255, 255, 255, 255), 1.0f, 1.0f},//right-bottom
 	};
 
 	//’¸“_\‘¢‚ÌŽw’è
 	Device->SetFVF(D3DFVF_XYZRHW | D3DFVF_DIFFUSE | D3DFVF_TEX1);
-	Device->SetTexture(0, texture_data->m_TextureData);
+	Device->SetTexture(0, texture_data->textureData);
 	Device->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP,
 		2,
 		TriStr,
@@ -110,19 +110,19 @@ void GraphicManager::DrawFont(float x, float y, std::string string, FontColor co
 	rect.right = x + 20;
 	rect.top = y;
 	rect.bottom = y + 20;
-	FontDevice->DrawText(nullptr, string.c_str(), -1, &rect, nullptr, 0xFFFFFF);
+	FontDevice->DrawText(nullptr, string.c_str(), -1, &rect, 0, 0xFFFFFF);
 }
 
 bool GraphicManager::CreateTexture(std::string file_name, Texture* texture_data)
 {
-	D3DXIMAGE_INFO info;
+	D3DXIMAGE_INFO d3dx_image_info;
 
-	D3DXGetImageInfoFromFileA(file_name.c_str(), &info);
+	D3DXGetImageInfoFromFileA(file_name.c_str(), &d3dx_image_info);
 
 	if (FAILED(D3DXCreateTextureFromFileExA(Device,
 		file_name.c_str(),
-		info.Width,
-		info.Height,
+		d3dx_image_info.Width,
+		d3dx_image_info.Height,
 		1,
 		0,
 		D3DFMT_UNKNOWN,
@@ -132,22 +132,22 @@ bool GraphicManager::CreateTexture(std::string file_name, Texture* texture_data)
 		0x0000ff00,
 		nullptr,
 		nullptr,
-		&texture_data->m_TextureData)))
+		&texture_data->textureData)))
 	{
 		return false;
 	}
 	else
 	{
-		D3DSURFACE_DESC desc;
+		D3DSURFACE_DESC d3d_surface_desc;
 
-		if (FAILED(texture_data->m_TextureData->GetLevelDesc(0, &desc)))
+		if (FAILED(texture_data->textureData->GetLevelDesc(0, &d3d_surface_desc)))
 		{
-			texture_data->m_TextureData->Release();
-			texture_data->m_TextureData = NULL;
+			texture_data->textureData->Release();
+			texture_data->textureData = NULL;
 			return false;
 		}
-		texture_data->m_Width = (float)desc.Width;
-		texture_data->m_Height = (float)desc.Height;
+		texture_data->width = (float)d3d_surface_desc.Width;
+		texture_data->height = (float)d3d_surface_desc.Height;
 	}
 	return true;
 }

@@ -1,6 +1,6 @@
 /**
 * @file Singleton.h
-* @biref シングルトンテンプレート
+* @brief シングルトンテンプレート
 * @author 木村哲也
 * @data 2020/11/11
 */
@@ -17,7 +17,7 @@ class Singleton final
 public:
 	static T& GetInstance()
 	{
-		std::call_once(InitFlag, Create);
+		std::call_once(IsInitFlag, Create);
 		assert(Instance);
 		return *Instance;
 	}
@@ -35,11 +35,11 @@ private:
 	}
 
 private:
-	static std::once_flag InitFlag;
+	static std::once_flag IsInitFlag;
 	static T* Instance;
 };
 
-template <class T> std::once_flag Singleton<T>::InitFlag;
+template <class T> std::once_flag Singleton<T>::IsInitFlag;
 template <class T> T* Singleton<T>::Instance = nullptr;
 
 #endif // !SINGLETON_H_

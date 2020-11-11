@@ -1,3 +1,10 @@
+/**
+* @file Scene.h
+* @brief シーンの基底クラスを宣言したファイル
+* @author 木村哲也
+* @data 2020/11/11
+*/
+
 #ifndef SCENE_H_
 #define SCENE_H_
 
@@ -12,11 +19,11 @@ public:
 	* @biref コンストラクタ
 	* @param[in] sceneChanger_ シーン変更のためのインターフェイス(SceneManager)のポインタ
 	*/
-	Scene(SceneChanger* sceneChanger_) :
-		pSceneChanger(sceneChanger_),
+	Scene(SceneChanger* scene_changer) :
+		SceneChanger(scene_changer),
 		CurrentState(SceneState::Init),
 		ThreadHandle(nullptr),
-		dwThreadID(0)
+		ThreadID(0)
 	{	}
 
 	/**
@@ -47,10 +54,10 @@ protected:
 	virtual void Load() = 0;
 
 protected:
-	SceneChanger* pSceneChanger;		//!< シーン変更のためのインターフェイスを保持するポインタ
+	SceneChanger* SceneChanger;		//!< シーン変更のためのインターフェイスを保持するポインタ
 	SceneState CurrentState;			//!< 現在のシーンの状態
 	HANDLE ThreadHandle;				//!< マルチスレッド用のハンドル保存変数
-	DWORD dwThreadID;					//!< マルチスレッド用のスレッドID
+	DWORD ThreadID;					//!< マルチスレッド用のスレッドID
 };
 
 #endif // !SCENE_H_

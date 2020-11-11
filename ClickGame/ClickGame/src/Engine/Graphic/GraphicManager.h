@@ -1,5 +1,5 @@
 /**
-* @file Fraphic.h
+* @file GraphicManager.h
 * @biref 描画に必要な構造体、クラスなどを宣言したファイル
 * @author 木村哲也
 * @data 2020/11/11
@@ -19,9 +19,9 @@
 //!< @brief テクスチャデータやサイズを保持する構造体
 struct Texture
 {
-	LPDIRECT3DTEXTURE9 m_TextureData;	//!< テクスチャデータ
-	float m_Width;						//!< 横幅
-	float m_Height;						//!< 縦幅
+	LPDIRECT3DTEXTURE9 textureData;	//!< テクスチャデータ
+	float width;						//!< 横幅
+	float height;						//!< 縦幅
 };
 
 //!< @brief 2D描画用頂点座標保存構造体

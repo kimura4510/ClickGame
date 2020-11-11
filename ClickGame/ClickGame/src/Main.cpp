@@ -17,11 +17,11 @@ int APIENTRY WinMain(HINSTANCE hInstance,
 	handle = window.MakeWindow(hInstance, 500, 500, title);
 	if (THE_GRAPHIC.InitGraphics(handle) == false)
 	{
-		return -1;
+		return 0;
 	}
 	if (THE_INPUT.Init(hInstance, handle) == false)
 	{
-		return -2;
+		return 0;
 	}
 
 	SceneManager scene_manager;

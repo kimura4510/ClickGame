@@ -13,19 +13,19 @@ InputManager::InputManager() : MouseDevice(nullptr)
 	}
 }
 
-bool InputManager::Init(HINSTANCE hInstance_, HWND hWindow_)
+bool InputManager::Init(HINSTANCE instance, HWND window_handle)
 {
 	// Interface‚Ì¶¬
-	if (FAILED(DirectInput8Create(hInstance_,
+	if (FAILED(DirectInput8Create(instance,
 		DIRECTINPUT_VERSION,
 		IID_IDirectInput8,
 		(void**)&Interface,
-		NULL)))
+		nullptr)))
 	{
 		return false;
 	}
 
-	if (CreateMouseDevice(hWindow_) == false)
+	if (CreateMouseDevice(window_handle) == false)
 	{
 		return false;
 	}
@@ -33,7 +33,7 @@ bool InputManager::Init(HINSTANCE hInstance_, HWND hWindow_)
 	return true;
 }
 
-bool InputManager::CreateMouseDevice(HWND hWindow_)
+bool InputManager::CreateMouseDevice(HWND window_handle)
 {
 	if (FAILED(Interface->CreateDevice(GUID_SysMouse, &MouseDevice, nullptr)))
 	{
@@ -47,7 +47,7 @@ bool InputManager::CreateMouseDevice(HWND hWindow_)
 		return false;
 	}
 
-	if (FAILED(MouseDevice->SetCooperativeLevel(hWindow_, DISCL_BACKGROUND | DISCL_NONEXCLUSIVE)))
+	if (FAILED(MouseDevice->SetCooperativeLevel(window_handle, DISCL_BACKGROUND | DISCL_NONEXCLUSIVE)))
 	{
 		MouseDevice->Release();
 		MouseDevice = nullptr;
@@ -85,21 +85,21 @@ void InputManager::Update()
 
 void InputManager::UpdateMouseState()
 {
-	DIMOUSESTATE mouse;
+	DIMOUSESTATE mouse_state;
 
-	if (FAILED(MouseDevice->GetDeviceState(sizeof(DIMOUSESTATE), &mouse)))
+	if (FAILED(MouseDevice->GetDeviceState(sizeof(DIMOUSESTATE), &mouse_state)))
 	{
 		MouseDevice->Acquire();
-		MouseDevice->GetDeviceState(sizeof(DIMOUSESTATE), &mouse);
+		MouseDevice->GetDeviceState(sizeof(DIMOUSESTATE), &mouse_state);
 	}
 
 	for (int i = 0; i < static_cast<int>(MouseButton::Max_Mouse_Btn); i++)
 	{
-		if (mouse.rgbButtons[i] & 0x80)
+		if (mouse_state.rgbButtons[i] & 0x80)
 		{
 			if (MouseState[i] == InputState::Not_Push || MouseState[i] == InputState::Release)
 			{
-				MouseState[i] = InputState::PushDown;
+				MouseState[i] = InputState::Push_Down;
 			}
 			else
 			{
@@ -108,7 +108,7 @@ void InputManager::UpdateMouseState()
 		}
 		else
 		{
-			if (MouseState[i] == InputState::Push || MouseState[i] == InputState::PushDown)
+			if (MouseState[i] == InputState::Push || MouseState[i] == InputState::Push_Down)
 			{
 				MouseState[i] = InputState::Release;
 			}
@@ -120,27 +120,27 @@ void InputManager::UpdateMouseState()
 	}
 }
 
-bool InputManager::GetMouse(MouseButton btn_) const
+bool InputManager::GetMouse(MouseButton button) const
 {
-	if (MouseState[static_cast<int>(btn_)] == InputState::Push)
+	if (MouseState[static_cast<int>(button)] == InputState::Push)
 	{
 		return true;
 	}
 	return false;
 }
 
-bool InputManager::GetMouseDown(MouseButton btn_) const
+bool InputManager::GetMouseDown(MouseButton button) const
 {
-	if (MouseState[static_cast<int>(btn_)] == InputState::PushDown)
+	if (MouseState[static_cast<int>(button)] == InputState::Push_Down)
 	{
 		return true;
 	}
 	return false;
 }
 
-bool InputManager::GetMouseUp(MouseButton btn_) const
+bool InputManager::GetMouseUp(MouseButton button) const
 {
-	if (MouseState[static_cast<int>(btn_)] == InputState::Release)
+	if (MouseState[static_cast<int>(button)] == InputState::Release)
 	{
 		return true;
 	}
@@ -149,13 +149,13 @@ bool InputManager::GetMouseUp(MouseButton btn_) const
 
 POINT InputManager::GetMousePos() const
 {
-	POINT pos;
-	GetCursorPos(&pos);
+	POINT position;
+	GetCursorPos(&position);
 
 	float horizon_magnification = (float)GetSystemMetrics(SM_CXSCREEN) / 1920.0f;
 	float vertical_magnification = (float)GetSystemMetrics(SM_CYSCREEN) / 1080.0f;
-	pos.x /= horizon_magnification;
-	pos.y /= vertical_magnification;
+	position.x /= horizon_magnification;
+	position.y /= vertical_magnification;
 
-	return pos;
+	return position;
 }

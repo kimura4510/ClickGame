@@ -1,6 +1,6 @@
 ﻿/**
-* @file Fraphic.h
-* @biref 入力に必要な構造体やクラスを宣言したファイル
+* @file InputManager.h
+* @brief 入力に必要な構造体やクラスを宣言したファイル
 * @author 木村哲也
 * @data 2020/11/11
 */
@@ -16,7 +16,7 @@ enum class InputState
 {
 	Not_Push,
 	Release,
-	PushDown,
+	Push_Down,
 	Push,
 };
 
@@ -40,7 +40,7 @@ public:
 	* @param[in] hInstance_	インスタンスハンドル
 	* @param[in] hWindow_	ウィンドウハンドル
 	*/
-	bool Init(HINSTANCE hInstance_, HWND hWindow_);
+	bool Init(HINSTANCE instance, HWND window_handle);
 
 	/**
 	* @brief Input機能の終了関数
@@ -61,19 +61,19 @@ public:
 	* @biref マウスが押されているかの情報取得関数
 	* @param[in] button_ マウスのボタンの種類
 	*/
-	bool GetMouse(MouseButton button_)const;
+	bool GetMouse(MouseButton button)const;
 
 	/***
 	* @biref マウスが押された瞬間かの情報取得関数
 	* @param[in] button_ マウスのボタンの種類
 	*/
-	bool GetMouseDown(MouseButton button_)const;
+	bool GetMouseDown(MouseButton button)const;
 
 	/***
 	* @biref マウスが離された瞬間かの情報取得関数
 	* @param[in] button_ マウスのボタンの種類
 	*/
-	bool GetMouseUp(MouseButton button_)const;
+	bool GetMouseUp(MouseButton button)const;
 
 	/***
 	* @biref マウス座標の取得関数
@@ -86,7 +86,7 @@ private:
 	* マウス用のDirectInputDeviceを生成、初期化します
 	* @return 生成結果、成功の場合はtrue
 	*/
-	bool CreateMouseDevice(HWND hWindow_);
+	bool CreateMouseDevice(HWND window_handle);
 
 	/**
 	* @brief マウスの入力情報更新関数

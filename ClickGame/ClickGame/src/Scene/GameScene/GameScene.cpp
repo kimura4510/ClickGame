@@ -3,7 +3,7 @@
 #include "..//..//Engine/Input/InputManager.h"
 #include <thread>
 
-GameScene::GameScene(SceneChanger* sceneChanger) : Scene(sceneChanger)
+GameScene::GameScene(SceneChanger* scene_changer) : Scene(sceneChanger)
 {
 	ThreadHandle = CreateThread(
 		nullptr,                    // セキュリティ属性
@@ -11,7 +11,7 @@ GameScene::GameScene(SceneChanger* sceneChanger) : Scene(sceneChanger)
 		this->LoadResources,        // スレッド関数
 		nullptr,                    // スレッド関数に渡す引数
 		0,                          // 作成オプション
-		&dwThreadID);             // スレッドID
+		&ThreadID);             // スレッドID
 
 	CurrentState = SceneState::Load;
 }

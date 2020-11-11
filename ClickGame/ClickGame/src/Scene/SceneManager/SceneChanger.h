@@ -1,3 +1,10 @@
+/**
+* @file SceneChanger.h
+* @brief シーン変更機能を持つ抽象クラスを宣言したファイル
+* @author 木村哲也
+* @data 2020/11/11
+*/
+
 #ifndef SCENECHANGER_H_
 #define SCENECHANGER_H_
 
@@ -21,14 +28,14 @@ public:
 	* スタックをクリアして指定したシーンを生成します
 	* @param[in] scene_ 変更する次のシーン
 	*/
-	virtual void ChangeScene(SceneID id_) = 0;
+	virtual void ChangeScene(SceneID id) = 0;
 
 	/**
 	* @biref シーン追加関数
 	* スタックをクリアせずに指定したシーンを生成します
 	* @param[in] scene_ 追加するシーン
 	*/
-	virtual void PushScene(SceneID id_) = 0;
+	virtual void PushScene(SceneID id) = 0;
 
 	/**
 	* @biref シーン削除関数

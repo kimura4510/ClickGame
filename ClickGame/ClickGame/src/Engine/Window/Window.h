@@ -1,6 +1,6 @@
 /**
 * @file Window.h
-* @biref Window生成に関するファイル
+* @brief Window生成に関するファイル
 * @author 木村哲也
 * @data 2020/11/11
 */

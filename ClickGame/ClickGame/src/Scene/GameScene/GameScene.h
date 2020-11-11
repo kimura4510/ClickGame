@@ -1,6 +1,6 @@
 /**
 * @file GameScene.h
-* @biref ゲームの本編処理ファイル
+* @brief ゲームの本編処理ファイル
 * @author 木村哲也
 * @data 2020/11/11
 */
@@ -14,14 +14,14 @@
 class GameScene : public Scene
 {
 public:
-	GameScene(SceneChanger* sceneChanger);
+	GameScene(SceneChanger* scene_changer);
 	virtual ~GameScene();
 
 	void Update() override;
 	void Draw() override;
 
 private:
-	static DWORD WINAPI LoadResources(LPVOID lpParam);
+	static DWORD WINAPI LoadResources(LPVOID param);
 	void Main() override;
 	void Load() override;
 };

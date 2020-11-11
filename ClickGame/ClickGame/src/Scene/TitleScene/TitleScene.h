@@ -1,6 +1,6 @@
 /**
 * @file TitleScene.h
-* @biref ゲーム起動直後に表示されるシーンの処理ファイル
+* @brief ゲーム起動直後に表示されるシーンの処理ファイル
 * @author 木村哲也
 * @data 2020/11/11
 */
@@ -15,14 +15,14 @@
 class TitleScene : public Scene
 {
 public:
-	TitleScene(SceneChanger* sceneChanger);
+	TitleScene(SceneChanger* scene_changer);
 	virtual ~TitleScene();
 
 	void Update() override;
 	void Draw() override;
 
 private:
-	static DWORD WINAPI LoadResources(LPVOID lpParam);
+	static DWORD WINAPI LoadResources(LPVOID param);
 	void Main() override;
 	void Load() override;
 };

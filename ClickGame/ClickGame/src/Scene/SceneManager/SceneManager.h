@@ -1,3 +1,10 @@
+/**
+* @file SceneManager.h
+* @brief シーン管理クラスを宣言したファイル
+* @author 木村哲也
+* @data 2020/11/11
+*/
+
 #ifndef SCENEMANAGER_H_
 #define SCENEMANAGER_H_
 

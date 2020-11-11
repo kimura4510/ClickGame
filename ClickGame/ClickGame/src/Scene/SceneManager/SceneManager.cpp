@@ -2,6 +2,7 @@
 
 #include "..//..//Engine/Graphic/GraphicManager.h"
 #include "..//TitleScene/TitleScene.h"
+#include "..//GameScene/GameScene.h"
 
 SceneManager::SceneManager()
 {
@@ -23,19 +24,7 @@ void SceneManager::ChangeScene(SceneID id)
 		SceneStack.pop();
 	}
 	
-	switch (id)
-	{
-	case SceneID::Tilte:
-		SceneStack.push(std::make_shared<TitleScene>(this));
-		break;
-	case SceneID::Game:
-		SceneStack.push(std::make_shared<GameScene>(this));
-		break;
-	case SceneID::MaxSceneID:
-		break;
-	default:
-		break;
-	}
+	PushScene(id);
 }
 
 void SceneManager::PushScene(SceneID id)
@@ -74,9 +63,9 @@ void SceneManager::Update()
 
 void SceneManager::Draw()
 {
-	THE_GRAPHICS->StartDraw();
+	THE_GRAPHIC.DrawStart();
 
 	SceneStack.top()->Draw();
 
-	THE_GRAPHICS->EndDraw();
+	THE_GRAPHIC.DrawEnd();
 }
