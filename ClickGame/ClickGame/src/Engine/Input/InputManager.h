@@ -1,19 +1,16 @@
 /**
 * @file Fraphic.h
-* @biref 入力に関するファイル
+* @biref 入力に必要な構造体やクラスを宣言したファイル
 * @author 木村哲也
 * @data 2020/11/11
 */
 
-#ifndef INPUT_MANAGER
-#define INPUT_MANAGER
+#ifndef INPUTMANAGER_H_
+#define INPUTMANAGER_H_
 
 #include <dinput.h>
-#include <XInput.h>
 #include <vector>
 #include "..//..//Utility/Singleton.h"
-
-#define MAX_CONTROLLERS 4	//!< XInputの取得可能な最大コントローラー数
 
 enum class InputState
 {
@@ -33,7 +30,6 @@ enum class MouseButton
 
 class InputManager
 {
-
 	friend Singleton<InputManager>;
 
 public:
@@ -60,10 +56,11 @@ public:
 
 
 	//!< 以下マウス関連の関数
-		/***
-		* @biref マウスが押されているかの情報取得関数
-		* @param[in] button_ マウスのボタンの種類
-		*/
+	
+	/***
+	* @biref マウスが押されているかの情報取得関数
+	* @param[in] button_ マウスのボタンの種類
+	*/
 	bool GetMouse(MouseButton button_)const;
 
 	/***
@@ -113,6 +110,6 @@ private:
 	InputState MouseState[3];		//!< マウス入力情報
 };
 
-#define THE_INPUTMANAGER InputMA::GetInstance()
+#define THE_INPUT Singleton<InputManager>::GetInstance()
 
-#endif INPUT_MANAGER
+#endif INPUTMANAGER_H_

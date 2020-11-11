@@ -4,14 +4,6 @@
 
 #pragma comment(lib, "dinput8.lib")
 #pragma comment(lib, "dxguid.lib")
-#pragma comment(lib, "xinput.lib")
-
-struct GamePadEnumParam
-{
-	LPDIRECTINPUTDEVICE8* GamePadDevList;
-	int FindCount;
-	HWND windowhandle;
-};
 
 InputManager::InputManager() : MouseDevice(nullptr)
 {
@@ -160,15 +152,10 @@ POINT InputManager::GetMousePos() const
 	POINT pos;
 	GetCursorPos(&pos);
 
-
-	//ScreenToClient(THE_WINDOW->GetWindowHandle(), &pos);
-
-
 	float horizon_magnification = (float)GetSystemMetrics(SM_CXSCREEN) / 1920.0f;
 	float vertical_magnification = (float)GetSystemMetrics(SM_CYSCREEN) / 1080.0f;
 	pos.x /= horizon_magnification;
 	pos.y /= vertical_magnification;
-
 
 	return pos;
 }
