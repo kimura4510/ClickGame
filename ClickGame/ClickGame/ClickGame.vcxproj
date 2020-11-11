@@ -163,6 +163,7 @@
     <ClCompile Include="src\Engine\Input\InputManager.cpp" />
     <ClCompile Include="src\Engine\Texture\Texture.cpp" />
     <ClCompile Include="src\Engine\Window\Window.cpp" />
+    <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="src\Scene\GameScene\GameScene.cpp" />
     <ClCompile Include="src\Scene\SceneManager\SceneManager.cpp" />
     <ClCompile Include="src\Scene\TitleScene\TitleScene.cpp" />

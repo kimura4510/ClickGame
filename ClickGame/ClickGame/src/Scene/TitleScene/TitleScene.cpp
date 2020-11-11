@@ -1,9 +1,10 @@
 #include "TitleScene.h"
 
-#include "..//..//Engine/Input/InputManager.h"
 #include <thread>
 
-#include <sstream>
+#include "..//..//Engine/Input/InputManager.h"
+#include "..//..//Engine/Graphic/GraphicManager.h"
+
 
 TitleScene::TitleScene(SceneChanger* sceneChanger_) : Scene(sceneChanger_)
 {
@@ -38,6 +39,10 @@ DWORD WINAPI TitleScene::LoadResources(LPVOID lpParam_)
 
 void TitleScene::Main()
 {
+	if (THE_INPUT.GetMouseDown(MouseButton::Left) == true)
+	{
+		pSceneChanger->PushScene(SceneID::Game);
+	}
 }
 
 void TitleScene::Update()
@@ -57,4 +62,6 @@ void TitleScene::Update()
 
 void TitleScene::Draw()
 {
+	std::string str = "Click to Start";
+	THE_GRAPHIC.DrawFont(200, 160, str, FontColor::White);
 }
