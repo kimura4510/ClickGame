@@ -1,7 +1,7 @@
-/**
+ï»¿/**
 * @file Fraphic.h
-* @biref “ü—Í‚É•K—v‚È\‘¢‘Ì‚âƒNƒ‰ƒX‚ğéŒ¾‚µ‚½ƒtƒ@ƒCƒ‹
-* @author –Ø‘º“N–ç
+* @biref å…¥åŠ›ã«å¿…è¦ãªæ§‹é€ ä½“ã‚„ã‚¯ãƒ©ã‚¹ã‚’å®£è¨€ã—ãŸãƒ•ã‚¡ã‚¤ãƒ«
+* @author æœ¨æ‘å“²ä¹Ÿ
 * @data 2020/11/11
 */
 
@@ -34,80 +34,80 @@ class InputManager
 
 public:
 	/**
-	* @brief Input‹@”\‚Ì‰Šú‰»ŠÖ”
-	* ƒfƒoƒCƒX‚Ì“ü—Íæ“¾‚É•K—v‚È‰Šú‰»‚ğs‚¢‚Ü‚·
-	* @return ‰Šú‰»Œ‹‰ÊA¬Œ÷‚Ìê‡‚Ítrue
-	* @param[in] hInstance_	ƒCƒ“ƒXƒ^ƒ“ƒXƒnƒ“ƒhƒ‹
-	* @param[in] hWindow_	ƒEƒBƒ“ƒhƒEƒnƒ“ƒhƒ‹
+	* @brief Inputæ©Ÿèƒ½ã®åˆæœŸåŒ–é–¢æ•°
+	* ãƒ‡ãƒã‚¤ã‚¹ã®å…¥åŠ›å–å¾—ã«å¿…è¦ãªåˆæœŸåŒ–ã‚’è¡Œã„ã¾ã™
+	* @return åˆæœŸåŒ–çµæœã€æˆåŠŸã®å ´åˆã¯true
+	* @param[in] hInstance_	ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ãƒãƒ³ãƒ‰ãƒ«
+	* @param[in] hWindow_	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒãƒ³ãƒ‰ãƒ«
 	*/
 	bool Init(HINSTANCE hInstance_, HWND hWindow_);
 
 	/**
-	* @brief Input‹@”\‚ÌI—¹ŠÖ”
-	* Input‹@”\‚ğI—¹‚³‚¹‚Ü‚·
+	* @brief Inputæ©Ÿèƒ½ã®çµ‚äº†é–¢æ•°
+	* Inputæ©Ÿèƒ½ã‚’çµ‚äº†ã•ã›ã¾ã™
 	*/
 	void Release();
 
 	/**
-	* @biref “ü—Íî•ñ‚ÌXV
-	* ƒ}ƒEƒXAƒL[ƒ{[ƒhAƒQ[ƒ€ƒpƒbƒh‚Ì“ü—Íî•ñ‚ÌXV‚ğs‚¢‚Ü‚·
+	* @biref å…¥åŠ›æƒ…å ±ã®æ›´æ–°
+	* ãƒã‚¦ã‚¹ã€ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ã€ã‚²ãƒ¼ãƒ ãƒ‘ãƒƒãƒ‰ã®å…¥åŠ›æƒ…å ±ã®æ›´æ–°ã‚’è¡Œã„ã¾ã™
 	*/
 	void Update();
 
 
-	//!< ˆÈ‰ºƒ}ƒEƒXŠÖ˜A‚ÌŠÖ”
+	//!< ä»¥ä¸‹ãƒã‚¦ã‚¹é–¢é€£ã®é–¢æ•°
 	
 	/***
-	* @biref ƒ}ƒEƒX‚ª‰Ÿ‚³‚ê‚Ä‚¢‚é‚©‚Ìî•ñæ“¾ŠÖ”
-	* @param[in] button_ ƒ}ƒEƒX‚Ìƒ{ƒ^ƒ“‚Ìí—Ş
+	* @biref ãƒã‚¦ã‚¹ãŒæŠ¼ã•ã‚Œã¦ã„ã‚‹ã‹ã®æƒ…å ±å–å¾—é–¢æ•°
+	* @param[in] button_ ãƒã‚¦ã‚¹ã®ãƒœã‚¿ãƒ³ã®ç¨®é¡
 	*/
 	bool GetMouse(MouseButton button_)const;
 
 	/***
-	* @biref ƒ}ƒEƒX‚ª‰Ÿ‚³‚ê‚½uŠÔ‚©‚Ìî•ñæ“¾ŠÖ”
-	* @param[in] button_ ƒ}ƒEƒX‚Ìƒ{ƒ^ƒ“‚Ìí—Ş
+	* @biref ãƒã‚¦ã‚¹ãŒæŠ¼ã•ã‚ŒãŸç¬é–“ã‹ã®æƒ…å ±å–å¾—é–¢æ•°
+	* @param[in] button_ ãƒã‚¦ã‚¹ã®ãƒœã‚¿ãƒ³ã®ç¨®é¡
 	*/
 	bool GetMouseDown(MouseButton button_)const;
 
 	/***
-	* @biref ƒ}ƒEƒX‚ª—£‚³‚ê‚½uŠÔ‚©‚Ìî•ñæ“¾ŠÖ”
-	* @param[in] button_ ƒ}ƒEƒX‚Ìƒ{ƒ^ƒ“‚Ìí—Ş
+	* @biref ãƒã‚¦ã‚¹ãŒé›¢ã•ã‚ŒãŸç¬é–“ã‹ã®æƒ…å ±å–å¾—é–¢æ•°
+	* @param[in] button_ ãƒã‚¦ã‚¹ã®ãƒœã‚¿ãƒ³ã®ç¨®é¡
 	*/
 	bool GetMouseUp(MouseButton button_)const;
 
 	/***
-	* @biref ƒ}ƒEƒXÀ•W‚Ìæ“¾ŠÖ”
+	* @biref ãƒã‚¦ã‚¹åº§æ¨™ã®å–å¾—é–¢æ•°
 	*/
 	POINT GetMousePos()const;
 
 private:
 	/**
-	* @brief ƒ}ƒEƒX—p‚ÌƒfƒoƒCƒX‚Ì¶¬
-	* ƒ}ƒEƒX—p‚ÌDirectInputDevice‚ğ¶¬A‰Šú‰»‚µ‚Ü‚·
-	* @return ¶¬Œ‹‰ÊA¬Œ÷‚Ìê‡‚Ítrue
+	* @brief ãƒã‚¦ã‚¹ç”¨ã®ãƒ‡ãƒã‚¤ã‚¹ã®ç”Ÿæˆ
+	* ãƒã‚¦ã‚¹ç”¨ã®DirectInputDeviceã‚’ç”Ÿæˆã€åˆæœŸåŒ–ã—ã¾ã™
+	* @return ç”Ÿæˆçµæœã€æˆåŠŸã®å ´åˆã¯true
 	*/
 	bool CreateMouseDevice(HWND hWindow_);
 
 	/**
-	* @brief ƒ}ƒEƒX‚Ì“ü—Íî•ñXVŠÖ”
+	* @brief ãƒã‚¦ã‚¹ã®å…¥åŠ›æƒ…å ±æ›´æ–°é–¢æ•°
 	*/
 	void UpdateMouseState();
 
 	/**
-* @biref ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+* @biref ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 */
 	InputManager();
 
 	/**
-	* @biref ƒfƒXƒgƒ‰ƒNƒ^
+	* @biref ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	*/
 	~InputManager() { }
 
 private:
-	static LPDIRECTINPUT8 Interface;		//!< DirectInput8‚ÌƒCƒ“ƒ^[ƒtƒFƒCƒX
-	LPDIRECTINPUTDEVICE8 MouseDevice;		//!< ƒ}ƒEƒX—p‚ÌƒfƒoƒCƒX
+	static LPDIRECTINPUT8 Interface;		//!< DirectInput8ã®ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ã‚¤ã‚¹
+	LPDIRECTINPUTDEVICE8 MouseDevice;		//!< ãƒã‚¦ã‚¹ç”¨ã®ãƒ‡ãƒã‚¤ã‚¹
 
-	InputState MouseState[3];		//!< ƒ}ƒEƒX“ü—Íî•ñ
+	InputState MouseState[3];		//!< ãƒã‚¦ã‚¹å…¥åŠ›æƒ…å ±
 };
 
 #define THE_INPUT Singleton<InputManager>::GetInstance()

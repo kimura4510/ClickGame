@@ -1,4 +1,4 @@
-#include "Window.h"
+ï»¿#include "Window.h"
 
 LRESULT CALLBACK WindowProc(HWND window_handle, UINT message_id, WPARAM wparam, LPARAM lparam)
 {
@@ -32,13 +32,13 @@ HWND Window::MakeWindow(HINSTANCE instance, int width, int height, std::string t
 		nullptr
 	};
 
-	//\‘¢‘Ì‚Ì“o˜^
+	//æ§‹é€ ä½“ã®ç™»éŒ²
 	if (RegisterClassEx(&window_class) == 0)
 	{
 		return 0;
 	}
 
-	//ƒEƒBƒ“ƒhƒE‚Ìì¬
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ä½œæˆ
 	hwnd = CreateWindow(
 		WINDOW_CLASS_NAME,
 		title.c_str(),

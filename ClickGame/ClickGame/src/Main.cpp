@@ -1,4 +1,4 @@
-#include <string>
+ï»¿#include <string>
 
 #include "Scene/SceneManager/SceneManager.h"
 #include "Engine/Window/Window.h"
@@ -10,7 +10,7 @@ int APIENTRY WinMain(HINSTANCE hInstance,
 	LPSTR CmpLine,
 	INT CmdShow)
 {
-	// ƒGƒ“ƒWƒ“•”‚Ì‰Šú‰»
+	// ã‚¨ãƒ³ã‚¸ãƒ³éƒ¨ã®åˆæœŸåŒ–
 	Window window;
 	std::string title = "ClickGame";
 	HWND handle;
