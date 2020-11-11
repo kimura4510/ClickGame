@@ -147,19 +147,25 @@
   <ItemGroup>
     <ClInclude Include="src\Engine\Graphic\GraphicManager.h" />
     <ClInclude Include="src\Engine\Input\InputManager.h" />
+    <ClInclude Include="src\Engine\Texture\Texture.h" />
     <ClInclude Include="src\Engine\Window\Window.h" />
+    <ClInclude Include="src\Scene\GameScene\GameScene.h" />
     <ClInclude Include="src\Scene\SceneManager\Scene.h" />
     <ClInclude Include="src\Scene\SceneManager\SceneChanger.h" />
     <ClInclude Include="src\Scene\SceneManager\SceneDefinition.h" />
     <ClInclude Include="src\Scene\SceneManager\SceneManager.h" />
+    <ClInclude Include="src\Scene\TitleScene\TitleScene.h" />
     <ClInclude Include="src\Utility\Singleton.h" />
     <ClInclude Include="src\Utility\Size.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Engine\Graphic\GraphicManager.cpp" />
     <ClCompile Include="src\Engine\Input\InputManager.cpp" />
+    <ClCompile Include="src\Engine\Texture\Texture.cpp" />
     <ClCompile Include="src\Engine\Window\Window.cpp" />
+    <ClCompile Include="src\Scene\GameScene\GameScene.cpp" />
     <ClCompile Include="src\Scene\SceneManager\SceneManager.cpp" />
+    <ClCompile Include="src\Scene\TitleScene\TitleScene.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
