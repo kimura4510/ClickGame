@@ -46,11 +46,14 @@ bool GraphicManager::InitGraphics(HWND hwindow)
 		return false;
 	}
 
+	D3DXCreateFont(Device, 20, 10, 0, 0, 0, 0, 0, 0, 0, "Times New Roman", FontDevice);
+
 	return true;
 }
 
 void GraphicManager::ReleaseGraphics()
 {
+	FontDevice->Release();
 	Device->Release();
 	Interface->Release();
 }
@@ -100,14 +103,24 @@ void GraphicManager::DrawTexture(float x, float y, Texture* texture_data)
 		sizeof(CustomVertex));
 }
 
-bool GraphicManager::CreateTexture(const char* file_name, Texture* texture_data)
+void GraphicManager::DrawFont(float x, float y, std::string string, FontColor color)
+{
+	RECT rect;
+	rect.left = x;
+	rect.right = x + 20;
+	rect.top = y;
+	rect.bottom = y + 20;
+	FontDevice->DrawText(nullptr, string.c_str(), -1, &rect, nullptr, 0xFFFFFF);
+}
+
+bool GraphicManager::CreateTexture(std::string file_name, Texture* texture_data)
 {
 	D3DXIMAGE_INFO info;
 
-	D3DXGetImageInfoFromFileA(file_name, &info);
+	D3DXGetImageInfoFromFileA(file_name.c_str(), &info);
 
 	if (FAILED(D3DXCreateTextureFromFileExA(Device,
-		file_name,
+		file_name.c_str(),
 		info.Width,
 		info.Height,
 		1,

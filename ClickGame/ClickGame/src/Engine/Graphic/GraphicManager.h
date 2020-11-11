@@ -1,6 +1,6 @@
 /**
 * @file Fraphic.h
-* @biref 描画に関するファイル
+* @biref 描画に必要な構造体、クラスなどを宣言したファイル
 * @author 木村哲也
 * @data 2020/11/11
 */
@@ -11,6 +11,8 @@
 #include <Windows.h>
 #include <d3d9.h>
 
+#include <string>
+
 #include "../../Utility/Singleton.h"
 
 //!< @brief テクスチャデータやサイズを保持する構造体
@@ -19,16 +21,6 @@ struct Texture
 	LPDIRECT3DTEXTURE9 m_TextureData;	//!< テクスチャデータ
 	float m_Width;						//!< 横幅
 	float m_Height;						//!< 縦幅
-};
-
-//!< @biref 3D描画用頂点座標保存構造体
-struct CustomVertex3D
-{
-	float m_x;
-	float m_y;
-	float m_z;
-	D3DCOLOR color;
-	float tu, tv;
 };
 
 //!< @brief 2D描画用頂点座標保存構造体
@@ -45,27 +37,13 @@ struct CustomVertex
 	float tv;	//テクスチャ座標y
 };
 
-//!< @brief 3D描画のために必要なパラメータを設定するデータ構造体
-struct DrawingData3D
+enum class FontColor
 {
-	float m_x;	//x座標
-	float m_y;	//y座標
-	float m_z;	//z座標
-
-	float m_tu;	//uテクスチャ座標
-	float m_tv;	//vテクスチャ座標
-
-	float m_width;	//幅
-	float m_height;	//高さ
-
-	DWORD m_color;	//color
-
-	float m_rotx;	//x回転
-	float m_roty;	//y回転
-	float m_rotz;	//z回転
-
-	float m_scalex;	//拡縮x
-	float m_scaley;	//拡縮y
+	Black,
+	Blue,
+	Red,
+	Green,
+	White,
 };
 
 class GraphicManager
@@ -111,7 +89,7 @@ public:
 	* @param[in] file_name 読み込むテクスチャの名前(パスを含む)
 	* @param[out] texture_data 読み込まれたテクスチャを反映するデータ
 	*/
-	bool CreateTexture(const char* file_name, Texture* texture_data);
+	bool CreateTexture(std::string file_name, Texture* texture_data);
 
 	/**
 	* @brief テクスチャ描画関数@n
@@ -123,10 +101,23 @@ public:
 	*/
 	void DrawTexture(float x, float y, Texture* texture_data);
 
+	/**
+	* @brief フォント描画関数@n
+	* 指定された位置に文字を描画します@n
+	* @param[in] x X軸描画座標
+	* @param[in] y Y軸描画座標
+	* @param[in] string 描画する文字
+	* @param[in] color 描画する文字の色
+	*/
+	void DrawFont(float x, float y, std::string string, FontColor color);
+
 private:
-	LPDIRECT3D9 Interface;		//DirectGraphicsインターフェース
-	LPDIRECT3DDEVICE9 Device;		//DirectGraphicsデバイス
+	LPDIRECT3D9 Interface;			//!< DirectGraphicsインターフェース
+	LPDIRECT3DDEVICE9 Device;		//!< DirectGraphicsデバイス
+	LPD3DXFONT FontDevice;				//!< DirectGraphicsのフォントのデバイス
 };
+
+#define THE_GRAPHIC Singleton<GraphicManager>::GetInstance()
 
 #endif // !GRAPHICMANAGER_H_
 
